@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dev1-tortank
+  namespace: dev1-ns
+  labels:
+    app: dev1-tortank
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dev1-tortank
+  template:
+    metadata:
+      labels:
+        app: dev1-tortank
+    spec:
+      containers:
+      - name: dev1-tortank
+        image: thegaragebandofit/dev2-carapuce:3.0
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dev1-tortank-service
+  namespace: dev1-ns
+spec:
+  selector:
+    app: dev1-Tortank
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: LoadBalancer
