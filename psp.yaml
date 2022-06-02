@@ -5,6 +5,7 @@ items:
     kind: Role
     metadata:
       name: app
+      namespace: dev1-ns
     rules:
       - apiGroups:
           - policy
@@ -22,6 +23,7 @@ items:
     kind: RoleBinding
     metadata:
       name: app
+      namespace: dev1-ns
     roleRef:
       apiGroup: rbac.authorization.k8s.io
       kind: Role
